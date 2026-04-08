@@ -56,9 +56,9 @@ World-Clock/
 ### Run Locally
 
 1. Clone the repository:
-   ```bash
+   
    git clone https://github.com/priyanildz/World-Clock.git
-```
+
 
 2. Navigate to the project folder:
 
@@ -89,4 +89,3 @@ To deploy:
    * Folder: / (root)
 
 ---
-```
