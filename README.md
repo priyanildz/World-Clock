@@ -52,3 +52,41 @@ World-Clock/
 - Dynamically filters country list based on user input
 
 ---
+
+### Run Locally
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/priyanildz/World-Clock.git
+```
+
+2. Navigate to the project folder:
+
+   ```bash
+   cd World-Clock
+   ```
+
+3. Open the project:
+
+   ```bash
+   open index.html
+   ```
+
+---
+
+## Deployment
+
+This project is deployed using GitHub Pages.
+
+To deploy:
+
+1. Push your code to GitHub
+2. Go to Settings → Pages
+3. Select:
+
+   * Source: Deploy from branch
+   * Branch: main
+   * Folder: / (root)
+
+---
+```
