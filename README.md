@@ -57,7 +57,9 @@ World-Clock/
 
 1. Clone the repository:
    
-   git clone https://github.com/priyanildz/World-Clock.git
+   ```bash
+   https://github.com/priyanildz/World-Clock.git
+   ```
 
 
 2. Navigate to the project folder:
@@ -71,21 +73,5 @@ World-Clock/
    ```bash
    open index.html
    ```
-
----
-
-## Deployment
-
-This project is deployed using GitHub Pages.
-
-To deploy:
-
-1. Push your code to GitHub
-2. Go to Settings → Pages
-3. Select:
-
-   * Source: Deploy from branch
-   * Branch: main
-   * Folder: / (root)
 
 ---
