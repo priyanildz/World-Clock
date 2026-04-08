@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TimeWorld – Global Clocks</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #121212;
+      color: #f1f1f1;
+    }
+
+    nav {
+      background: #1f1f1f;
+      padding: 15px 30px;
+      border-bottom: 1px solid #333;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #00d9ff;
+      text-decoration: none;
+    }
+
+    .navbar-nav {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    .nav-link {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #00d9ff;
+    }
+
+    .search-form {
+      display: flex;
+      gap: 10px;
+    }
+
+    .form-control {
+      padding: 8px 12px;
+      border: 1px solid #555;
+      border-radius: 4px;
+      background: #1e1e1e;
+      color: white;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border: none;
+      background: #00d9ff;
+      color: #121212;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background: #00c2e6;
+    }
+
+    .jumbotron {
+      background: #1e1e1e;
+      padding: 60px 30px;
+      margin: 120px auto 40px auto;
+      border-radius: 12px;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .jumbotron h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      color: #00d9ff;
+    }
+
+    .jumbotron p {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: #2b2b2b;
+      max-height: 300px;
+      overflow-y: auto;
+      min-width: 220px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+      border-radius: 6px;
+      z-index: 1;
+    }
+
+    .dropdown-content button {
+      width: 100%;
+      padding: 12px;
+      color: white;
+      background: none;
+      border: none;
+      text-align: left;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .dropdown-content button:hover {
+      background: #444;
+    }
+
+    .dropdown-open .dropdown-content {
+      display: block;
+    }
+
+    .time-display, #local-time {
+      margin-top: 20px;
+      font-size: 1.3rem;
+      color: #00d9ff;
+      white-space: pre-line;
+    }
+
+    section {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 40px 30px;
+      background: #1e1e1e;
+      border-radius: 12px;
+    }
+
+    section h2 {
+      color: #00d9ff;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      background: #1a1a1a;
+      padding: 30px;
+      text-align: center;
+      margin-top: 60px;
+      border-top: 1px solid #333;
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #00d9ff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    
+
+    @media (max-width: 600px) {
+      nav, .navbar-nav, .search-form {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .form-control {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="navbar">
+      <a class="navbar-brand" href="#">TimeWorld</a>
+      <ul class="navbar-nav">
+        <li><a class="nav-link active" href="#">Home</a></li>
+        <li><a class="nav-link" href="#about">About</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+      <form class="search-form" onsubmit="return false;">
+        <input class="form-control" id="countrySearch" type="search" placeholder="Filter countries..." oninput="filterList()" />
+      </form>
+    </div>
+  </nav>
+
+  <div class="jumbotron">
+    <h1>Current Local Time:</h1>
+    <div id="local-time">Loading...</div>
+    <hr>
+    <p>Select a country to view its current time:</p>
+    <div class="dropdown" id="dropdown">
+      <button class="btn" onclick="toggleDropdown()">Browse Times</button>
+      <div class="dropdown-content" id="country-list"></div>
+    </div>
+    <div class="time-display" id="world-time"></div>
+  </div>
+
+  <section id="about">
+    <h2>About TimeWorld</h2>
+    <p>
+      <strong>TimeWorld</strong> is a global time viewer designed to help you track current time across different cities and countries in real time.
+      Whether you're coordinating meetings across time zones, staying in touch with family abroad, or just curious about the time in another part of the world,
+      TimeWorld gives you a live and responsive experience.
+    </p>
+    <p>
+      You can use the searchable dropdown to quickly find a country or region and view its current time alongside your own.
+      Built with HTML, CSS, and vanilla JavaScript, this tool is lightweight and privacy-friendly with no tracking or data storage.
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>If you have questions, feedback, or suggestions, feel free to reach out!</p>
+    <p>Email: <a href="mailto:info@timeworld.com" style="color: #00d9ff">info@timeworld.com</a></p>
+    <p>Twitter: <a href="https://twitter.com/timeworldapp" target="_blank" style="color: #00d9ff">@timeworldapp</a></p>
+  </section>
+
+  <footer>
+    &copy; 2025 TimeWorld. All rights reserved.<br>
+    <a href="#">Home</a> | <a href="#about">About</a> | <a href="#contact">Contact</a>
+  </footer>
+
+  <script>
+    const localDiv = document.getElementById('local-time');
+    const worldDiv = document.getElementById('world-time');
+    const dropdown = document.getElementById('dropdown');
+    const listEl = document.getElementById('country-list');
+    const searchInput = document.getElementById('countrySearch');
+
+    const zones = [
+      { tz: 'Pacific/Honolulu', name: 'Hawaii' },
+      { tz: 'America/Anchorage', name: 'Alaska' },
+      { tz: 'America/Los_Angeles', name: 'USA (Los Angeles)' },
+      { tz: 'America/Denver', name: 'USA (Denver)' },
+      { tz: 'America/Chicago', name: 'USA (Chicago)' },
+      { tz: 'America/New_York', name: 'USA (New York)' },
+      { tz: 'America/Sao_Paulo', name: 'Brazil (São Paulo)' },
+      { tz: 'Europe/London', name: 'UK (London)' },
+      { tz: 'Europe/Berlin', name: 'Germany (Berlin)' },
+      { tz: 'Africa/Cairo', name: 'Egypt (Cairo)' },
+      { tz: 'Europe/Moscow', name: 'Russia (Moscow)' },
+      { tz: 'Asia/Dubai', name: 'UAE (Dubai)' },
+      { tz: 'Asia/Kolkata', name: 'India (Kolkata)' },
+      { tz: 'Asia/Shanghai', name: 'China (Shanghai)' },
+      { tz: 'Asia/Tokyo', name: 'Japan (Tokyo)' },
+      { tz: 'Australia/Sydney', name: 'Australia (Sydney)' },
+      { tz: 'Pacific/Auckland', name: 'New Zealand (Auckland)' }
+    ];
+
+    zones.forEach(z => {
+      const btn = document.createElement('button');
+      btn.textContent = z.name;
+      btn.onclick = () => selectZone(z);
+      listEl.appendChild(btn);
+    });
+
+    function toggleDropdown() {
+      dropdown.classList.toggle('dropdown-open');
+    }
+
+    function filterList() {
+      const q = searchInput.value.toLowerCase();
+      [...listEl.children].forEach(btn => {
+        btn.style.display = btn.textContent.toLowerCase().includes(q) ? 'block' : 'none';
+      });
+    }
+
+    function updateLocal() {
+      const n = new Date();
+      localDiv.textContent = n.toLocaleTimeString() + ' on ' + n.toLocaleDateString();
+    }
+
+    let selected = null;
+    function selectZone(z) {
+      selected = z;
+      dropdown.classList.remove('dropdown-open');
+      updateWorld();
+    }
+
+    function updateWorld() {
+      if (!selected) {
+        worldDiv.textContent = '';
+        return;
+      }
+      const n = new Date();
+      const fmt = new Intl.DateTimeFormat('en-US', {
+        timeZone: selected.tz,
+        timeStyle: 'medium',
+        dateStyle: 'long'
+      });
+      worldDiv.textContent = `${selected.name}: ${fmt.format(n)}`;
+    }
+
+    setInterval(() => {
+      updateLocal();
+      updateWorld();
+    }, 1000);
+
+    updateLocal();
+  </script>
+</body>
+</html>
