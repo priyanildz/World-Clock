@@ -129,3 +129,4 @@ This project is open source and available under the MIT License.
 Developed as a frontend project to demonstrate real-time JavaScript functionality and UI design.
 
 ```
+```
