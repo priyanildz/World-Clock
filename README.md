@@ -40,9 +40,9 @@ The application dynamically fetches and updates time values, helping users stay 
 
 | Main Interface |
 |----------------|
-| <img src="assets/main.png" width="400"/> |
+| <img src="assets/main.png" width="900"/> |
 | Time Display |
-| <img src="assets/home.png" width="400"/> |
+| <img src="assets/home.png" width="900"/> |
 
 </div>
 
