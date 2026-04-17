@@ -38,9 +38,11 @@ The application dynamically fetches and updates time values, helping users stay 
 
 <div align="center">
 
-| Main Interface | Time Display |
-|----------------|-------------|
-| <img src="assets/home.png" width="400"/> | <img src="assets/time.png" width="400"/> |
+| Main Interface |
+|----------------|
+| <img src="assets/main.png" width="400"/> |
+| Time Display |
+| <img src="assets/home.png" width="400"/> |
 
 </div>
 
