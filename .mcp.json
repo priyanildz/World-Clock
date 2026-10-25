@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "jetro": {
+      "type": "stdio",
+      "command": "C:\\Users\\Ekam\\.jetro\\runtime\\node-win32-x64.exe",
+      "args": [
+        "C:\\Users\\Ekam\\.jetro\\mcp-server\\index.js"
+      ],
+      "env": {
+        "JET_WORKSPACE": "d:\\02 Course\\01 Project\\07_TimeWorld",
+        "JET_API_URL": "https://api.jetro.ai",
+        "PATH": "C:\\Users\\Ekam\\.jetro\\runtime;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Windows\\System32\\OpenSSH\\;C:\\Users\\Ekam\\AppData\\Local\\Programs\\Python\\Python313\\;C:\\Users\\Ekam\\AppData\\Local\\Programs\\Python\\Python313\\Scripts;C:\\Program Files\\Git\\cmd;C:\\Program Files\\Git\\cmd;C:\\laragon\\bin\\php\\php-8.3.16-Win32-vs16-x64;C:\\Program Files\\PostgreSQL\\17\\bin;C:\\Program Files\\Docker\\Docker\\resources\\bin;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\Java\\jdk-17\\bin;C:\\Program Files\\Java\\jdk-17\\bin;C:\\Users\\Ekam\\AppData\\Local\\Programs\\Python\\Python313\\Scripts;C:\\Program Files\\nodejs\\;C:\\Users\\Ekam\\AppData\\Local\\Android\\Sdk\\platform-tools;D:\\Course\\flutter\\bin;C:\\Program Files\\MongoDB\\Server\\6.0\\bin;C:\\MinGW\\bin;C:\\Program Files\\Go\\bin;C:\\Program Files\\Amazon\\AWSCLIV2\\;C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\;C:\\Users\\Ekam\\AppData\\Local\\Programs\\Python\\Launcher\\;C:\\Users\\Ekam\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\;C:\\Users\\Ekam\\AppData\\Local\\Programs\\Python\\Python313\\;C:\\Users\\Ekam\\AppData\\Local\\Microsoft\\WindowsApps;D:\\Microsoft VS Code\\bin;C:\\Users\\Ekam\\AppData\\Roaming\\npm;C:\\flutter\\bin;C:\\Users\\Ekam\\AppData\\Local\\Programs\\mongosh\\;C:\\Users\\Ekam\\go\\bin;C:\\Users\\Ekam.local\\bin;C:\\Users\\Ekam.local\\bin;C:\\Users\\Ekam\\.local\\bin;C:\\Users\\Ekam\\AppData\\Local\\Microsoft\\WinGet\\Links;"
+      }
+    }
+  }
+}
